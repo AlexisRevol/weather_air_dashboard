@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "weather-air-dashboard"
+version = "0.1.0"
+description = "Dashboard météo et qualité de l’air"
+authors = ["Alexis <tonmail@exemple.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "weather_air_dashboard"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.26.0"
+pandas = "^2.3.0"
+numpy = "^1.26.0"
+plotly = "^6.1.2"
+httpx = "^0.28.1"
+folium = "^0.20.0"
+meteostat = "^1.7.4"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.4"
+pytest = "^8.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-select = ["I"]
