@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 from weather_air_dashboard.api_clients.iqair import IQAirClient
 from weather_air_dashboard.api_clients.openweather import OpenWeatherClient
-from weather_air_dashboard.data_processing.analysis import process_forecast_data
+from weather_air_dashboard.data_processing.analysis import (
+    aggregate_daily_forecast,
+    process_forecast_data,
+)
 from weather_air_dashboard.visualisation.plots import create_forecast_figure
 from weather_air_dashboard.visualisation.ui_components import (
     display_air_quality,
@@ -78,28 +81,30 @@ if st.sidebar.button("Rechercher"):
             st.success(f"Données pour {weather_data.get('name')} récupérées !")
 
         lat, lon = weather_data["coord"]["lat"], weather_data["coord"]["lon"]
-        df_forecast = process_forecast_data(forecast_data)
-        forecast_fig = create_forecast_figure(df_forecast)
+        df_hourly = process_forecast_data(forecast_data)
+        df_daily = aggregate_daily_forecast(df_hourly)
+
+        forecast_fig = create_forecast_figure(df_hourly)
 
         # Afficher les composants UI
-        col1, col2 = st.columns([2, 1]) # Donne 2/3 de la place à la partie gauche
-        
+        col1, col2 = st.columns([2, 1])  # Donne 2/3 de la place à la partie gauche
+
         with col1:
             with st.container(border=True):
                 display_current_weather(weather_data)
-            
+
             with st.container(border=True):
                 display_air_quality(air_quality_data)
 
         with col2, st.container(border=True):
             # C'est ici qu'on appelle la fonction map !
-            display_map(lat, lon) 
+            display_map(lat, lon)
 
         st.divider()
-        
+
         with st.container(border=True):
-            display_forecast_section(forecast_fig, df_forecast)
-            
+            display_forecast_section(forecast_fig, df_daily, df_hourly)
+
     except Exception as e:
         st.error(f"Une erreur est survenue pour '{city}'. Détail: {e}")
 

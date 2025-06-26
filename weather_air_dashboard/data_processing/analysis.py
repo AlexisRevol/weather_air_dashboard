@@ -25,3 +25,23 @@ def process_forecast_data(forecast_data: dict) -> pd.DataFrame:
     )
 
     return df_cleaned
+
+
+def aggregate_daily_forecast(df_forecast: pd.DataFrame) -> pd.DataFrame:
+    """Agrège les prévisions par tranches de 3h en un résumé journalier."""
+    # S'assure que la colonne 'Date' est bien de type datetime
+    df_forecast["Date"] = pd.to_datetime(df_forecast["Date"])
+
+    # Agrégation par jour
+    daily_summary = (
+        df_forecast.groupby(df_forecast["Date"].dt.date)
+        .agg(
+            temp_min=("Température (°C)", "min"),
+            temp_max=("Température (°C)", "max"),
+            # Prend l'icône la plus fréquente de la journée (généralement celle de midi)
+            weather_icon=("weather_icon", lambda s: s.mode()[0]),
+        )
+        .reset_index()
+    )
+
+    return daily_summary
