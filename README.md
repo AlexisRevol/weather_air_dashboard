@@ -5,7 +5,7 @@
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Aperçu du Dashboard](https://raw.githubusercontent.com/AlexisRevol/weather_air_dashboard/main/.github/assets/demo_weather.gif)
+![Aperçu du Dashboard](https://raw.githubusercontent.com/AlexisRevol/weather_air_dashboard/main/.github/assets/demo_weather.gif)
 
 Un tableau de bord interactif pour visualiser la météo en temps réel, les prévisions sur 5 jours et la qualité de l'air pour n'importe quelle ville dans le monde.
 
