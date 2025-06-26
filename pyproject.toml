@@ -30,4 +30,15 @@ line-length = 88
 target-version = "py311"
 
 [tool.ruff.lint]
-extend-select = ["I"]
+# E, F: Flake8 standard
+# B: flake8-bugbear (détecte des bugs potentiels)
+# I: isort (tri des imports, tu l'as déjà)
+# C90: mccabe (complexité cyclomatique, pour éviter les fonctions trop longues)
+# SIM: flake8-simplify (suggère des simplifications de code)
+select = ["E", "F", "B", "I", "C90", "SIM"]
+
+#ignorer certaines règles 
+# ignore = ["B008"]
+
+[tool.ruff.format]
+quote-style = "double"
