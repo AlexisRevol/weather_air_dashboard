@@ -35,5 +35,5 @@ class OpenWeatherClient:
         return self._make_request("weather", params={"q": city})
 
     def get_forecast(self, lat: float, lon: float) -> dict:
-        """Récupère les prévisions sur 5 jours / 3 heures."""
+        """Récupère les prévisions sur 5 jours / par tranches de 3 heures."""
         return self._make_request("forecast", params={"lat": lat, "lon": lon})
