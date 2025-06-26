@@ -4,25 +4,39 @@ from plotly.graph_objects import Figure
 
 
 def display_current_weather(weather_data: dict):
-    """Affiche le bloc de la météo actuelle."""
-    st.header(
-        f"Météo actuelle à"
-        f" {weather_data.get('name')}, {weather_data['sys']['country']}"
-    )
+    """Affiche le bloc de la météo actuelle de manière bien organisée."""
+    
+    city_name = weather_data.get('name')
+    country = weather_data['sys']['country']
+    st.header(f"Météo actuelle à {city_name}, {country}")
 
-    col1, col2, col3, col4 = st.columns(4)
+    # On utilise 3 colonnes pour bien espacer les infos
+    col1, col2, col3 = st.columns(3)
 
+    # --- Données extraites de l'API ---
     temp = weather_data["main"]["temp"]
     feels_like = weather_data["main"]["feels_like"]
     description = weather_data["weather"][0]["description"].capitalize()
     icon_code = weather_data["weather"][0]["icon"]
     icon_url = f"https://openweathermap.org/img/wn/{icon_code}@2x.png"
+    humidity = weather_data["main"]["humidity"]
+    wind_speed_ms = weather_data["wind"]["speed"]
+    wind_speed_kmh = wind_speed_ms * 3.6
 
-    col1.metric("Température", f"{temp:.1f} °C")
-    col2.metric("Ressenti", f"{feels_like:.1f} °C")
-    col3.metric("Ciel", description)
-    col4.image(icon_url, width=80)
+    # --- Colonne 1 : Températures ---
+    with col1:
+        st.metric("Température", f"{temp:.1f} °C")
+        st.metric("Ressenti", f"{feels_like:.1f} °C")
 
+    # --- Colonne 2 : Ciel et Vent ---
+    with col2:
+        st.metric("Ciel", description)
+        st.metric("Vent 💨", f"{wind_speed_kmh:.1f} km/h")
+
+    # --- Colonne 3 : Icône et Humidité ---
+    with col3:
+        st.image(icon_url, width=100) # Icône plus visible
+        st.metric("Humidité 💧", f"{humidity}%")
 
 def display_forecast_section(fig: Figure, df: pd.DataFrame):
     """Affiche la section des prévisions météo."""
@@ -83,3 +97,11 @@ def display_air_quality(air_quality_data: dict):
         f"<span style='color:{color};'>{level}</span>**",
         unsafe_allow_html=True,
     )
+
+
+def display_map(lat: float, lon: float):
+    """Affiche une carte centrée sur les coordonnées données."""
+    st.header("Localisation")
+    # st.map requiert un DataFrame avec les colonnes 'lat' et 'lon'
+    map_data = pd.DataFrame({"lat": [lat], "lon": [lon]})
+    st.map(map_data, zoom=10)
