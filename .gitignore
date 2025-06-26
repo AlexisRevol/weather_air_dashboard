@@ -1,0 +1,57 @@
+# === Python général ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# === Environnements virtuels ===
+.env
+.venv
+.envrc
+*.env
+
+# === Caches et logs ===
+.cache/
+logs/
+*.log
+*.sqlite3
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints/
+
+# === Streamlit ===
+.streamlit/
+
+# === VS Code et IDE ===
+.vscode/
+.idea/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Poetry ===
+poetry.lock
+
+# === Tests et couverture ===
+htmlcov/
+coverage.xml
+.tox/
+.pytest_cache/
+
+# === Folium (cartes temporaires) ===
+*.html
+
+# === Fichiers temporaires divers ===
+*.bak
+*.tmp
+*~
+
+# === Secrets éventuels ===
+secrets.json
+config.json
