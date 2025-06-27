@@ -34,7 +34,7 @@ Ce projet met en œuvre une stack moderne de data science et de développement w
 *   **Outils de Développement (DevOps) :**
     *   **Gestion des Dépendances & Environnement :** Poetry
     *   **Qualité du Code (Linting & Formatting) :** Ruff
-    *   **Tests :** Pytest (à venir)
+    *   **Tests :** Pytest
 
 ---
 
@@ -57,13 +57,14 @@ cd weather_air_dashboard
 ### 2. Créer le fichier d'environnement
 
 Vous aurez besoin de clés API gratuites pour OpenWeatherMap et IQAir.
-    * Créez un compte sur OpenWeatherMap et IQAir.
-    * À la racine du projet, créez un fichier nommé .env.
-    * Ajoutez-y vos clés API comme suit :
+
+* Créez un compte sur OpenWeatherMap et IQAir.
+* À la racine du projet, créez un fichier nommé .env.
+* Ajoutez-y vos clés API comme suit :
 
 ```bash
-OPENWEATHER_API_KEY="votre_cle_openweather"
-IQAIR_API_KEY="votre_cle_iqair"
+OPENWEATHER_API_KEY="cle_openweather"
+IQAIR_API_KEY="cle_iqair"
 ```
 
 ### 3. Installer les dépendances
