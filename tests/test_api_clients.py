@@ -17,7 +17,9 @@ FAKE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 SUCCESSFUL_WEATHER_RESPONSE = {
     "coord": {"lon": 2.3488, "lat": 48.8534},
-    "weather": [{"id": 800, "main": "Clear", "description": "ciel dégagé", "icon": "01d"}],
+    "weather": [
+        {"id": 800, "main": "Clear", "description": "ciel dégagé", "icon": "01d"}
+        ],
     "main": {"temp": 20.0, "feels_like": 19.5, "humidity": 50},
     "wind": {"speed": 5.0},
     "name": "Paris",
