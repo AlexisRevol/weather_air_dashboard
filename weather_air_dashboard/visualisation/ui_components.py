@@ -1,4 +1,3 @@
-import os
 
 import pandas as pd
 import pydeck as pdk
@@ -134,7 +133,7 @@ def display_map(lat: float, lon: float):
     initial_view_state = pdk.ViewState(
         latitude=lat,
         longitude=lon,
-        zoom=9, # Un peu plus de zoom pour mieux voir la ville
+        zoom=9,  # Un peu plus de zoom pour mieux voir la ville
         pitch=55,
     )
 
@@ -146,7 +145,7 @@ def display_map(lat: float, lon: float):
         get_radius=1000,
         pickable=True,
     )
-    
+
     map_style = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
 
     st.pydeck_chart(
